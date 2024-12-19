@@ -1,4 +1,15 @@
+import { Link } from "react-router-dom"
+import { AuthContext } from "../../providers/AuthProvider"
+import { useContext } from "react"
+
 const Navbar = () => {
+    const { user, logOut, currentUser } = useContext(AuthContext)
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch()
+        navigate("/login")
+    }
     return (
         <div className="navbar bg-base-200">
             <div className="navbar-start">
@@ -20,36 +31,31 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li><a>Item 1</a></li>
-                        <li>
-                            <a>Parent</a>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Item 3</a></li>
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/books">Books</Link></li>
+                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/contact">Contact</Link></li>
                     </ul>
                 </div>
                 <a className="btn btn-ghost text-xl">BookHive</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a>Item 1</a></li>
-                    <li>
-                        <details>
-                            <summary>Parent</summary>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </details>
-                    </li>
-                    <li><a>Item 3</a></li>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/books">Books</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                    <li><Link to="/contact">Contact</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {
+                    user?.email ?
+                        <div className="flex justify-end items-center gap-5">
+                            <p className="text-green-600 text-lg">Hello {user?.displayName} 👋</p>
+                            <button className='mt-3 text-center px-5 py-3 bg-red-500 duration-300 rounded-lg text-white' onClick={handleLogOut}>Log out</button>
+                        </div> :
+                        <Link to="/login" className='mt-3 text-center px-5 py-3 bg-green-500 duration-300 rounded-lg text-white'>Login</Link>
+                }
             </div>
         </div>
     )

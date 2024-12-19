@@ -1,10 +1,11 @@
-const BookCard = () => {
+const BookCard = ({ book }) => {
+    const { id, title, author, genre, publishedYear, isbn, price, rating, availableCopies, coverImageUrl, description, language, pageCount, publisher } = book
     return (
         <div className="card bg-base-100  shadow-xl">
             <figure>
                 <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                    alt="Shoes"
+                    src={coverImageUrl}
+                    alt={title}
                 />
             </figure>
             <div className="card-body">
