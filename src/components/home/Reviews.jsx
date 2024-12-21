@@ -12,7 +12,7 @@ const Reviews = () => {
     if (reviewsLoading) return <p>Loading...</p>
 
     return (
-        <div className="my-5">
+        <div className="mt-8 mb-5">
             <Title name="customers review" />
             <Swiper
                 spaceBetween={30}

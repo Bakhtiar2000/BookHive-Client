@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { CiHeart } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import useWishlist from "../../hooks/useWishlist";
 import useCart from "../../hooks/useCart";
@@ -14,7 +13,6 @@ const BookCard = ({ book }) => {
     const [axiosSecure] = useAxiosSecure();
     const [wishlistsData, wishlistsLoading, wishlistsRefetch] = useWishlist();
     const [cartsData, cartsLoading, cartsRefetch] = useCart();
-    console.log(wishlistsData, cartsData);
 
     const [wishlistStatus, setWishlistStatus] = useState(false);
     const [cartStatus, setCartStatus] = useState(false);

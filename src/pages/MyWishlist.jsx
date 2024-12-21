@@ -1,12 +1,17 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useContext } from "react";
 import useBooks from "../hooks/useBooks";
 import useWishlists from "../hooks/useWishlist";
 import Title from "../components/shared/Title";
+import useAxiosSecure from "../hooks/useAxios";
+import { AuthContext } from "../providers/AuthProvider";
+import { toast } from "react-toastify";
 
 const MyWishlist = () => {
     const [wishlistsData, wishlistsLoading, wishlistsRefetch] = useWishlists();
     const [booksData, booksLoading, booksRefetch] = useBooks();
-    if (wishlistsLoading || booksRefetch) return <p> Loading... </p>
+    if (wishlistsLoading || booksLoading) return <p> Loading... </p>
+    const [axiosSecure] = useAxiosSecure();
+    const { currentUser } = useContext(AuthContext);
 
     const [lists, setLists] = useState([]);
 
@@ -22,6 +27,21 @@ const MyWishlist = () => {
         }
         return [];
     }, [booksData, lists]);
+
+    const onAddToCart = () => {
+        axiosSecure.post(`/cart/${currentUser?.email}`, { item: _id })
+            .then(res => {
+                if (res.status === 200) {
+                    toast.success("Added To Cart", {
+                        position: "top-center",
+                        autoClose: 3000,
+                        theme: "light",
+                    });
+                    cartsRefetch();
+                }
+            })
+            .catch(error => console.log(error));
+    };
 
     return (
         <div className="container mx-auto">
@@ -41,7 +61,7 @@ const MyWishlist = () => {
                                 <span className="text-green-500 font-semibold">${book.price}</span>
                             </p>
                         </div>
-                        <div className="btn bg-teal-500 mt-10">
+                        <div onClick={onAddToCart} className="btn bg-teal-500 mt-10">
                             <button className="text-white">Add to cart</button>
                         </div>
                     </div>

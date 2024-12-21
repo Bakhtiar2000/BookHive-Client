@@ -10,7 +10,7 @@ const Banner = () => {
             <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-neutral-content text-center">
                 <div className="max-w-md">
-                    <h1 className="mb-5 text-5xl font-bold">Welcome to BookHive</h1>
+                    <h1 className="mb-5 text-3xl lg:text-5xl font-bold">Welcome to BookHive</h1>
                     <p className="mb-5">
                         Your ultimate destination for books that ignite your imagination, broaden your horizons, and bring stories to life. Dive into a world of endless possibilities today!
                     </p>

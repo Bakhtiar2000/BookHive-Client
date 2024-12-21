@@ -9,7 +9,7 @@ const FeaturedBooks = () => {
   if (booksLoading) return <p>Loading...</p>
 
   return (
-    <div className="my-2">
+    <div className="mt-8 mb-5">
       <Title name="Featured Books" />
       <div className="grid gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 duration-300 px-2 mx-auto">
         {

@@ -6,7 +6,7 @@ import Title from '../shared/Title';
 
 const ContactUs = () => {
     return (
-        <div className="bg-gray-100">
+        <div className="bg-gray-100 mt-8 mb-5">
             <Title name="Contact Us" />
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center py-10">
                 {/* About Club */}

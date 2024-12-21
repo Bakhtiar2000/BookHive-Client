@@ -161,7 +161,7 @@ const Register = () => {
 
                             {/* Image Link */}
                             <input
-                                className="h-12 w-full border outline-none focus:border-b-4 focus:border-primary  px-3 text-dark bg-white"
+                                className="h-12 w-full border outline-none focus:border-b-4 focus:border-primary mt-5 px-3 text-dark bg-white"
                                 type="text"
                                 placeholder="Image Link: "
                                 {...register("img")}

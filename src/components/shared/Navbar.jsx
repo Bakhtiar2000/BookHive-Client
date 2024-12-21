@@ -68,16 +68,16 @@ const Navbar = () => {
             <div className="navbar-end">
                 {
                     user?.email ?
-                        <div className="flex justify-end items-center gap-5">
+                        <div className="flex justify-end items-center gap-3 md:gap-5 ">
                             {
                                 currentUser?.img ? (
                                     <img
-                                        className="mt-3 cursor-pointer w-10 h-10 rounded-full border border-teal-300"
+                                        className="cursor-pointer w-8 md:w-10 h-8 md:h-10 rounded-full border border-teal-300"
                                         src={currentUser.img}
                                         alt="Profile"
                                     />
                                 ) : (
-                                    <p className="mt-3 w-10 h-10 text-center text-lg font-semibold hover:bg-teal-500 py-1 hover:text-white rounded-full border cursor-pointer duration-300 border-teal-300 text-black">
+                                    <p className="w-8 md:w-10 h-8 md:h-10 text-center text-lg font-semibold hover:bg-teal-500 py-1 hover:text-white rounded-full border cursor-pointer duration-300 border-teal-300 text-black">
                                         {currentUser?.name?.split(' ')
                                             .filter(word => word.length > 2)
                                             .slice(0, 2)
@@ -89,7 +89,7 @@ const Navbar = () => {
                             {
                                 currentUser?.role == "buyer" &&
                                 <div className="dropdown dropdown-bottom dropdown-end">
-                                    <div tabIndex={0} role="button" className="mt-2 text-teal-500 text-2xl"><FaShoppingCart /></div>
+                                    <div tabIndex={0} role="button" className="text-teal-500 text-lg md:text-2xl"><FaShoppingCart /></div>
                                     <div tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] md:w-96 w-80 p-2 shadow overflow-h-scroll">
                                         {
                                             selectedBooks.map(book => (
@@ -112,9 +112,9 @@ const Navbar = () => {
                                     </div>
                                 </div>
                             }
-                            <button className='mt-3 text-center px-5 py-3 bg-red-500 duration-300 rounded-lg text-white' onClick={handleLogOut}>Log out</button>
+                            <button className='text-center px-3 md:px-5 py-1 md:py-3 bg-red-500 duration-300 rounded-lg text-white' onClick={handleLogOut}>Log out</button>
                         </div> :
-                        <Link to="/login" className='mt-3 text-center px-5 py-3 bg-green-500 duration-300 rounded-lg text-white'>Login</Link>
+                        <Link to="/login" className='text-center px-5 py-3 bg-green-500 duration-300 rounded-lg text-white'>Login</Link>
                 }
             </div>
         </div>

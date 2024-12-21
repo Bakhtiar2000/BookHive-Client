@@ -3,10 +3,15 @@ import BookCard from "../components/shared/BookCard";
 import Title from "../components/shared/Title";
 import { useForm } from "react-hook-form";
 import useBooks from "../hooks/useBooks";
+import { useLocation } from "react-router-dom";
 
 const AllBooks = () => {
     const [filteredBooks, setFilteredBooks] = useState([]);
     const { register, handleSubmit } = useForm();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const paramAuthor = queryParams.get("author");
+    const paramPublisher = queryParams.get("publisher");
 
     const [booksData, booksLoading] = useBooks();
 
@@ -19,6 +24,27 @@ const AllBooks = () => {
     const allGenres = booksData ? [...new Set(booksData.flatMap((book) => book.genre))] : [];
     const allPublishers = booksData ? [...new Set(booksData.map((book) => book.publisher))] : [];
     const allAuthors = booksData ? [...new Set(booksData.flatMap((book) => book.author))] : [];
+
+    useEffect(() => {
+        if (!booksLoading && booksData) {
+            let updatedBooks = [...booksData];
+
+            if (paramAuthor) {
+                updatedBooks = updatedBooks.filter((book) =>
+                    book.author.includes(paramAuthor)
+                );
+            }
+
+            if (paramPublisher) {
+                updatedBooks = updatedBooks.filter((book) =>
+                    book.publisher === paramPublisher
+                );
+            }
+
+            setFilteredBooks(updatedBooks);
+        }
+    }, [booksData, booksLoading, paramAuthor, paramPublisher]);
+
 
     const applyFilters = (data) => {
         if (!booksData) return;

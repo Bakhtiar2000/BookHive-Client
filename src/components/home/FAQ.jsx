@@ -2,9 +2,9 @@ import Title from "../shared/Title";
 
 const FAQ = () => {
     return (
-        <div className="my-3 px-2 w-1/2 mx-auto">
+        <div className="mt-8 mb-10 mx-10 px-2 sm:w-1/2 sm:mx-auto">
             <Title name="frequently asked Question" />
-            <div className=" flex flex-col gap-1">
+            <div className="flex flex-col gap-1">
                 <div className="collapse collapse-arrow bg-base-300">
                     <input type="radio" name="my-accordion-2" defaultChecked />
                     <div className="collapse-title text-xl font-medium">
