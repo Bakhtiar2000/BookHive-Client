@@ -1,11 +1,33 @@
 import { Link } from "react-router-dom"
 import { AuthContext } from "../../providers/AuthProvider"
-import { useContext } from "react"
+import { useContext, useEffect, useMemo, useState } from "react"
 import { FaShoppingCart } from "react-icons/fa"
 import NavItems from "./NavItems"
+import useCarts from "../../hooks/useCart"
+import useBooks from "../../hooks/useBooks"
 
 const Navbar = () => {
     const { user, logOut, currentUser } = useContext(AuthContext)
+    const [cartsData, cartsLoading, cartsRefetch] = useCarts();
+    const [booksData, booksLoading, booksRefetch] = useBooks();
+
+    if (cartsLoading || booksLoading) return <p> Loading... </p>
+    const [lists, setLists] = useState([]);
+
+    useEffect(() => {
+        if (cartsData?.list && cartsData.list !== lists) {
+            setLists(cartsData.list);
+        }
+    }, [cartsData, lists]);
+
+    const selectedBooks = useMemo(() => {
+        if (booksData?.length && lists.length) {
+            return booksData.filter(book => lists.includes(book._id));
+        }
+        return [];
+    }, [booksData, lists]);
+    console.log(selectedBooks)
+
     const handleLogOut = () => {
         logOut()
             .then()
@@ -68,10 +90,26 @@ const Navbar = () => {
                                 currentUser?.role == "buyer" &&
                                 <div className="dropdown dropdown-bottom dropdown-end">
                                     <div tabIndex={0} role="button" className="mt-2 text-teal-500 text-2xl"><FaShoppingCart /></div>
-                                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                                        <li><a>Item 1</a></li>
-                                        <li><a>Item 2</a></li>
-                                    </ul>
+                                    <div tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] md:w-96 w-80 p-2 shadow overflow-h-scroll">
+                                        {
+                                            selectedBooks.map(book => (
+                                                <div className="flex gap-3 border border-teal-200 rounded mb-3 p-2 shadow-lg">
+                                                    <img className="w-20 md:w-24 object-cover h-min" src={book.coverImageUrl} alt="" />
+                                                    <div>
+                                                        <p className='font-semibold'>{book.title}</p>
+                                                        <p className='mt-2 mb-1'>by {book.author}</p>
+                                                        <p className='mb-2 text-sm'>Genre: {book.genre}</p>
+
+
+                                                        <p className="text-lg">
+                                                            <span className="line-through mr-3 text-red-600">${(Number(book.price)) * 3}</span>
+                                                            <span className="text-green-500 font-semibold">${book.price}</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
                                 </div>
                             }
                             <button className='mt-3 text-center px-5 py-3 bg-red-500 duration-300 rounded-lg text-white' onClick={handleLogOut}>Log out</button>

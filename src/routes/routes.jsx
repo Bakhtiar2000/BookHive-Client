@@ -9,6 +9,7 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import AllBooks from "../pages/AllBooks";
 import SingleBook from "../pages/SingleBook";
+import MyWishlist from "../pages/MyWishlist";
 
 
 const baseURL = "http://localhost:5000/"
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
             {
                 path: "/books",
                 element: <AllBooks />
+            },
+            {
+                path: "/wishlist",
+                element: <MyWishlist />
             },
             {
                 path: "/books/:id",

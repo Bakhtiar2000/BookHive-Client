@@ -4,18 +4,13 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import Title from "../shared/Title";
-import { useEffect, useState } from 'react';
+import useReviews from '../../hooks/useReviews';
 
 
 const Reviews = () => {
+    const [reviewsData, reviewsLoading, reviewsRefetch] = useReviews()
+    if (reviewsLoading) return <p>Loading...</p>
 
-    const [reviews, setReviews] = useState([])
-
-    useEffect(() => {
-        fetch('/reviews.json')
-            .then(res => res.json())
-            .then(data => setReviews(data))
-    }, [])
     return (
         <div className="my-5">
             <Title name="customers review" />
@@ -33,7 +28,7 @@ const Reviews = () => {
                 className="mySwiper"
             >
                 {
-                    reviews?.map(review =>
+                    reviewsData?.map(review =>
                         <SwiperSlide key={review._id}>
                             <div className='duration-300 h-72 bg-lightDark rounded-lg p-3 md:py-5 md:px-8 border border-slate-500 shadow-lg max-w-4xl mx-auto'>
 

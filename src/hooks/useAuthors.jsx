@@ -3,7 +3,7 @@ import useAxiosSecure from "./useAxios";
 
 const useAuthors = () => {
     const [axiosSecure] = useAxiosSecure();
-    const { data: authorsData = [], isLoading: authorsLoading, authorsRefetch } = useQuery({
+    const { data: authorsData = [], isLoading: authorsLoading, refetch: authorsRefetch } = useQuery({
         queryKey: ['AuthorsData'],
         queryFn: async () => {
             const res = await axiosSecure.get("authors");
