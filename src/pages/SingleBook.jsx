@@ -2,11 +2,102 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 const SingleBook = () => {
-    const bookData = useLoaderData()
-    console.log(bookData)
+    const { author,
+        availableCopies,
+        description,
+        coverImageUrl,
+        genre,
+        isbn,
+        language,
+        pageCount,
+        price,
+        publishedYear,
+        publisher,
+        rating,
+        title,
+        _id } = useLoaderData()
+
     return (
-        <div>
-            <h2>Single book</h2>
+        <div className='container mx-auto mt-10'>
+
+            {/* Upper Content */}
+            <div className='flex justify-center gap-10 mb-10'>
+                {/* Upper Left */}
+                <div className='border-2 border-teal-500 p-5'>
+                    <img src={coverImageUrl} alt="" />
+                </div>
+
+                {/* Upper Right */}
+                <div className='my-auto'>
+                    <p className='text-3xl font-semibold'>{title}</p>
+                    <p className='text-lg mt-2 mb-1'>by <span className='text-blue-500 cursor-pointer hover:underline text-xl font-semibold'>{author}</span></p>
+                    <p className='mb-5'>Genre: {genre}</p>
+                    <p>Publisher: {publisher}</p>
+                    <p className='mt-2'>Rating: {rating} / 5</p>
+                    <p className="text-lg mt-2">
+                        <span className="line-through mr-3 text-red-600">${(Number(price)) * 3}</span>
+                        <span className="text-green-500 font-semibold">${price}</span>
+                    </p>
+                    <div className="w-full btn bg-teal-500 mt-10">
+                        <button className="text-white">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Lower Content - Tabs*/}
+            <div role="tablist" className="tabs tabs-lifted">
+                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Description" />
+                <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                    <p>{description}</p>
+                </div>
+
+                <input
+                    type="radio"
+                    name="my_tabs_2"
+                    role="tab"
+                    className="tab"
+                    aria-label="Specification"
+                    defaultChecked />
+                <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                    <table className="table-auto border-collapse border border-gray-200 w-full text-left">
+                        <tbody>
+                            <tr>
+                                <td className="border border-gray-300 px-4 py-2  bg-gray-100 text-gray-700">Title</td>
+                                <td className="border border-gray-300 px-4 py-2">{title}</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-300 px-4 py-2  bg-gray-100 text-gray-700">Author</td>
+                                <td className="border border-gray-300 px-4 py-2">{author}</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-300 px-4 py-2  bg-gray-100 text-gray-700 w-40">Publisher</td>
+                                <td className="border border-gray-300 px-4 py-2">{publisher}</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-300 px-4 py-2  bg-gray-100 text-gray-700">Edition</td>
+                                <td className="border border-gray-300 px-4 py-2">{publishedYear}</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-300 px-4 py-2  bg-gray-100 text-gray-700">Number of Pages</td>
+                                <td className="border border-gray-300 px-4 py-2">{pageCount}</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-300 px-4 py-2  bg-gray-100 text-gray-700">Available Copies</td>
+                                <td className="border border-gray-300 px-4 py-2">{availableCopies}</td>
+                            </tr>
+                            <tr>
+                                <td className="border border-gray-300 px-4 py-2  bg-gray-100 text-gray-700">Language</td>
+                                <td className="border border-gray-300 px-4 py-2">{language}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <input type="radio" name="my_tabs_2" role="tab" className="tab" aria-label="Author" />
+                <div role="tabpanel" className="tab-content bg-base-100 border-base-300 rounded-box p-6">
+                    {author}
+                </div>
+            </div>
         </div>
     );
 };

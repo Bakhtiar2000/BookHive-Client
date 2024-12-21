@@ -67,7 +67,7 @@ const AllBooks = () => {
                     </label>
                     <div className="grid gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 duration-300 px-2 mx-auto">
                         {filteredBooks.map((book) => (
-                            <BookCard key={book.id} book={book} />
+                            <BookCard key={book._id} book={book} />
                         ))}
                     </div>
                 </div>

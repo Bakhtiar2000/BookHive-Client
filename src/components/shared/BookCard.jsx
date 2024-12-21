@@ -2,7 +2,7 @@ import { CiHeart } from "react-icons/ci";
 import { Link } from "react-router-dom";
 
 const BookCard = ({ book }) => {
-    const { id, title, author, genre, publishedYear, isbn, price, rating, availableCopies, coverImageUrl, description, language, pageCount, publisher } = book
+    const { _id, title, author, genre, publishedYear, isbn, price, rating, availableCopies, coverImageUrl, description, language, pageCount, publisher } = book
     return (
         <div className="relative card bg-base-100 shadow-lg">
             <CiHeart className="absolute top-2 right-5 hover:right-3 cursor-pointer  text-4xl text-teal-500 hover:text-5xl hover:text-red-600 duration-200" />
@@ -12,7 +12,7 @@ const BookCard = ({ book }) => {
             />
 
             <div className="card-body px-5 p-3">
-                <Link to={`/books/${id}`} className="card-title text-teal-500 cursor-pointer hover:underline duration-300">{title}</Link>
+                <Link to={`/books/${_id}`} className="card-title text-teal-500 cursor-pointer hover:underline duration-300">{title}</Link>
                 <p>By {author}</p>
                 <p>Rating: {rating} / 5</p>
                 <p className="text-lg ">
