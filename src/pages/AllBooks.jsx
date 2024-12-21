@@ -2,57 +2,49 @@ import { useEffect, useState } from "react";
 import BookCard from "../components/shared/BookCard";
 import Title from "../components/shared/Title";
 import { useForm } from "react-hook-form";
+import useBooks from "../hooks/useBooks";
 
 const AllBooks = () => {
-    const [books, setBooks] = useState([]);
     const [filteredBooks, setFilteredBooks] = useState([]);
     const { register, handleSubmit } = useForm();
 
-    useEffect(() => {
-        fetch("/books.json")
-            .then((res) => res.json())
-            .then((data) => {
-                setBooks(data);
-                setFilteredBooks(data);
-            });
-    }, []);
+    const [booksData, booksLoading] = useBooks();
 
-    const allGenres = [...new Set(books.flatMap((book) => book.genre))];
-    const allPublishers = [...new Set(books.map((book) => book.publisher))];
-    const allAuthors = [...new Set(books.flatMap((book) => book.author))];
+    useEffect(() => {
+        if (!booksLoading && booksData) {
+            setFilteredBooks(booksData);
+        }
+    }, [booksData, booksLoading]);
+
+    const allGenres = booksData ? [...new Set(booksData.flatMap((book) => book.genre))] : [];
+    const allPublishers = booksData ? [...new Set(booksData.map((book) => book.publisher))] : [];
+    const allAuthors = booksData ? [...new Set(booksData.flatMap((book) => book.author))] : [];
 
     const applyFilters = (data) => {
-        let updatedBooks = [...books];
+        if (!booksData) return;
 
-        // Search by book name
+        let updatedBooks = [...booksData];
+
         if (data.search) {
             updatedBooks = updatedBooks.filter((book) =>
                 book.title.toLowerCase().includes(data.search.toLowerCase())
             );
         }
-
-        // Filter by genre
-        if (data.genre && data.genre.length > 0) {
+        if (data.genre?.length > 0) {
             updatedBooks = updatedBooks.filter((book) =>
                 data.genre.some((genre) => book.genre.includes(genre))
             );
         }
-
-        // Filter by publisher
-        if (data.publisher && data.publisher.length > 0) {
+        if (data.publisher?.length > 0) {
             updatedBooks = updatedBooks.filter((book) =>
                 data.publisher.includes(book.publisher)
             );
         }
-
-        // Filter by author
-        if (data.author && data.author.length > 0) {
+        if (data.author?.length > 0) {
             updatedBooks = updatedBooks.filter((book) =>
                 data.author.some((author) => book.author.includes(author))
             );
         }
-
-        // Sort by price
         if (data.price) {
             updatedBooks.sort((a, b) =>
                 data.price === "asc" ? a.price - b.price : b.price - a.price
@@ -62,11 +54,13 @@ const AllBooks = () => {
         setFilteredBooks(updatedBooks);
     };
 
+    if (booksLoading) return <p>Loading...</p>;
+
     return (
         <div className="container mx-auto my-2">
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content">
                     <Title name="All Books" />
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
                         Open drawer

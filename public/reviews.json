@@ -3,28 +3,28 @@
         "_id": 1,
         "name": "Rashed Mia",
         "img": "https://img.freepik.com/free-photo/portrait-happy-male-with-broad-smile_176532-8175.jpg?size=626&ext=jpg&ga=GA1.1.670690934.1670350375&semt=ais",
-        "job": "CEO, Mustang",
-        "review": "Wonderful platform that simplifies connecting with lawyers from various practice areas. The user-friendly interface and efficient matching system are top-notch."
+        "job": "Book Enthusiast",
+        "review": "An amazing platform to discover books from different genres. The recommendations and reviews help me find my next favorite read."
     },
     {
         "_id": 2,
         "name": "Mariam Khatun",
         "img": "https://img.freepik.com/free-photo/smiling-redhead-girl-with-long-hair-pale-natural-skin-no-make-up-smile-white-teeth-standing-plaid-shirt-looking-happy-white-background_176420-45542.jpg?size=626&ext=jpg&ga=GA1.1.670690934.1670350375&semt=ais",
-        "job": "Businesswoman",
-        "review": "A game-changer for finding legal support. The lawyers I've connected with were highly knowledgeable and responsive. A valuable resource for any entrepreneur."
+        "job": "Avid Reader",
+        "review": "This platform has transformed how I explore books. The curated lists and easy navigation make it perfect for any book lover."
     },
     {
         "_id": 3,
         "name": "Karim Bhuiyan",
         "img": "https://img.freepik.com/free-photo/young-man-cool-guy-with-brunette-hair-piercing-bristle-wearing-khaki-color-sweater-have-confident-smile-emotional-concept-isolated-white-wall_295783-15317.jpg?size=626&ext=jpg&ga=GA1.1.670690934.1670350375&semt=ais",
-        "job": "Journalist",
-        "review": "A valuable resource for journalists like me. The platform is intuitive, and I appreciate the diverse range of legal experts available."
+        "job": "Casual Reader",
+        "review": "A great platform for casual readers like me. I love the simple layout and the ability to find books that suit my interests effortlessly."
     },
     {
         "_id": 4,
         "name": "Jamshed Mojumder",
         "img": "https://img.freepik.com/free-psd/studio-portrait-young-teenage-boy_23-2150162529.jpg?size=626&ext=jpg&ga=GA1.1.670690934.1670350375&semt=ais",
-        "job": "Software Engineer, Vivasoft",
-        "review": "Vivasoft has benefited greatly from this platform. It simplifies the process of finding lawyers for various legal needs, and the quality of lawyers available is impressive."
+        "job": "Tech Enthusiast",
+        "review": "This website has helped me explore books that I wouldn't have found otherwise. The personalized recommendations are a fantastic feature!"
     }
 ]

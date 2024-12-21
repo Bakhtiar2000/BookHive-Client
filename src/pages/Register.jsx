@@ -66,6 +66,7 @@ const Register = () => {
         const userData = {
             name: data.name,
             email: data.email,
+            img: data?.img,
             role: data.role,
         }
         signUp(data.email, data.password)
@@ -104,7 +105,7 @@ const Register = () => {
             .then(res => {
                 const loggedUser = res.user
                 console.log(loggedUser)
-                const savedUser = { name: loggedUser?.displayName, email: loggedUser?.email, role: 'buyer' }
+                const savedUser = { name: loggedUser?.displayName, email: loggedUser?.email, img: loggedUser?.photoURL, role: 'buyer' }
                 console.log(savedUser)
                 fetch('http://localhost:5000/users', {
                     method: 'POST',
@@ -153,10 +154,18 @@ const Register = () => {
                             <input
                                 className="h-12 w-full border outline-none focus:border-b-4 focus:border-primary  px-3 text-dark bg-white"
                                 type="text"
-                                placeholder="Full Name: "
+                                placeholder="*Full Name: "
                                 {...register("name", { required: true })}
                             />
                             {errors.name && <span className='text-sm text-red-500 ml-1'>Name is required</span>}
+
+                            {/* Image Link */}
+                            <input
+                                className="h-12 w-full border outline-none focus:border-b-4 focus:border-primary  px-3 text-dark bg-white"
+                                type="text"
+                                placeholder="Image Link: "
+                                {...register("img")}
+                            />
 
                             {/* Email */}
                             <input

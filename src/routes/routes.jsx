@@ -8,6 +8,10 @@ import Register from "../pages/Register";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import AllBooks from "../pages/AllBooks";
+import SingleBook from "../pages/SingleBook";
+
+
+const baseURL = "http://localhost:5000/"
 
 export const router = createBrowserRouter([
     {
@@ -21,6 +25,11 @@ export const router = createBrowserRouter([
             {
                 path: "/books",
                 element: <AllBooks />
+            },
+            {
+                path: "/books/:id",
+                element: <SingleBook></SingleBook>,
+                loader: ({ params }) => fetch(`${baseURL}books/${params.id}`)
             },
             {
                 path: "/about",

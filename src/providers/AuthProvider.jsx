@@ -60,7 +60,7 @@ const AuthProvider = ({ children }) => {
             console.log(authUser)
             setUser(authUser)
             setLoading(false)
-            user?.email && await axiosSecure.get(`/users/email/${user?.email}`)
+            user?.email && await axiosSecure.get(`/users/${user?.email}`)
                 .then((data) => {
                     setCurrentUser(data.data);
                 })
@@ -77,6 +77,8 @@ const AuthProvider = ({ children }) => {
             return unsubscribe();
         }
     }, [user])
+
+    console.log(currentUser)
 
     const authInfo = {
         user,
