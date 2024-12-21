@@ -1,18 +1,36 @@
-import Category from "../shared/Category";
+import { useEffect, useState } from "react";
 import Title from "../shared/Title";
+import CategoryCard from "../shared/CategoryCard";
 
 const Categories = () => {
+    const [authors, setAuthors] = useState([])
+    const [publishers, setPublishers] = useState([])
+
+    useEffect(() => {
+        fetch('/authors.json')
+            .then(res => res.json())
+            .then(data => setAuthors(data))
+    }, [])
+
+    useEffect(() => {
+        fetch('/publishers.json')
+            .then(res => res.json())
+            .then(data => setPublishers(data))
+    }, [])
+
     return (
-        <div>
-            <Title name="Buy from a writer" />
-            <h2>Categories b writer</h2>
-            <div className="grid gap-2 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 px-2">
-                <Category />
-                <Category />
-                <Category />
-                <Category />
-                <Category />
-                <Category />
+        <div className="my-2">
+            <Title name="Select books by authors" />
+            <div className="grid gap-2 lg:grid-cols-5 grid-cols-3 duration-300 px-2 place-items-center">
+                {
+                    authors.slice(0, 6).map(author => <CategoryCard key={author.id} category={author} />)
+                }
+            </div>
+            <Title name="Select books by publishers" />
+            <div className="grid gap-2 lg:grid-cols-5 grid-cols-3 duration-300 px-2 place-items-center">
+                {
+                    publishers.slice(0, 6).map(author => <CategoryCard key={author.id} category={author} />)
+                }
             </div>
         </div>
     );

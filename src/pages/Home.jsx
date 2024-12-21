@@ -3,7 +3,8 @@ import Banner from "../components/home/Banner"
 import FeaturedBooks from "../components/home/FeaturedBooks"
 import Reviews from "../components/home/Reviews"
 import Categories from "../components/home/Categories"
-import Contact from "../components/home/Contact"
+import ContactUs from "../components/home/ContactUs"
+
 
 const Home = () => {
     return (
@@ -13,7 +14,7 @@ const Home = () => {
                 <FeaturedBooks />
                 <Categories />
                 <Reviews />
-                <Contact />
+                <ContactUs />
                 <FAQ />
             </div>
         </div>

@@ -3,10 +3,11 @@ import {
 } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
-import Contact from "../components/home/Contact";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import About from "../pages/About";
+import Contact from "../pages/Contact";
+import AllBooks from "../pages/AllBooks";
 
 export const router = createBrowserRouter([
     {
@@ -19,7 +20,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: "/books",
-                element: <Home />
+                element: <AllBooks />
             },
             {
                 path: "/about",

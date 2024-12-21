@@ -12,13 +12,12 @@ const FeaturedBooks = () => {
       .then(data => setBooks(data))
   }, [])
 
-  console.log(books)
   return (
     <div className="my-2">
       <Title name="Featured Books" />
-      <div className="grid gap-2 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 px-2">
+      <div className="grid gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 duration-300 px-2 mx-auto">
         {
-          books.map(book => <BookCard key={book.id} book={book} />)
+          books.slice(0, 6).map(book => <BookCard key={book.id} book={book} />)
         }
       </div>
     </div>

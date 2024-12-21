@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1, 
+        "name" : "Summit Press",
+        "img" : "https://dynamic.design.com/asset/logo/068e8c3d-9a6c-4531-9f19-38a51d7d62b0/logo-search-grid-1x?logoTemplateVersion=1&v=637645446594700000&text=Summit+Press"
+    },
+    {
+        "id": 2, 
+        "name" : "Shadow Books",
+        "img" : "https://dynamic.design.com/asset/logo/b9b2a941-0661-4285-8cd7-449cb6c86e1b/logo-search-grid-1x?logoTemplateVersion=1&v=638694262190630000&text=Shadow+Books&colorpalette=blue"
+    },
+    {
+        "id": 3, 
+        "name" : "Infinity Publications",
+        "img" : "https://dynamic.design.com/asset/logo/a2e43526-ad83-4c28-abef-9c3b84739aab/logo-search-grid-1x?logoTemplateVersion=1&v=638441869565630000&text=Infinity+Publications&colorpalette=red"
+    },
+    {
+        "id": 4, 
+        "name" : "Legacy Books",
+        "img" : "https://dynamic.design.com/asset/logo/4c43fe57-f567-4d08-967c-afc9fd8ed756/logo-search-grid-1x?logoTemplateVersion=1&v=637607036734570000&text=Legacy+Books"
+    }
+]
