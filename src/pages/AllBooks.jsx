@@ -83,13 +83,13 @@ const AllBooks = () => {
     if (booksLoading) return <p>Loading...</p>;
 
     return (
-        <div className="container mx-auto my-2">
+        <div className="container mx-auto ">
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
                     <Title name="All Books" />
-                    <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
-                        Open drawer
+                    <label htmlFor="my-drawer-2" className="fixed z-20 top-16 btn bg-teal-50 text-teal-500 rounded-full drawer-button lg:hidden me-auto mt-3 ms-3">
+                        <span className="menu-icon">☰</span>
                     </label>
                     <div className="grid gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 duration-300 px-2 mx-auto">
                         {filteredBooks.map((book) => (
@@ -97,7 +97,7 @@ const AllBooks = () => {
                         ))}
                     </div>
                 </div>
-                <div className="drawer-side">
+                <div className="drawer-side z-30">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <form
                         className="menu bg-base-200 text-base-content min-h-full w-80 p-4"

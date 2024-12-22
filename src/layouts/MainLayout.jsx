@@ -15,10 +15,10 @@ const MainLayout = () => {
             <div>
                 <Navbar />
             </div>
-            <div className="min-h-screen">
+            <div className="min-h-screen pt-16">
                 {
                     currentUser?.role == "buyer" &&
-                    <div className="fixed z-50 right-5 mt-5">
+                    <div className="fixed z-30 right-5 mt-8">
                         <Cart />
                     </div>
                 }

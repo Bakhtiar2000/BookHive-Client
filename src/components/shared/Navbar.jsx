@@ -6,7 +6,20 @@ import NavItems from "./NavItems";
 
 const Navbar = () => {
     const { user, logOut, currentUser } = useContext(AuthContext);
+    const [navState, setNavState] = useState(false);
     const navigate = useNavigate();
+
+    const onNavScroll = () => {
+        if (window.scrollY > 300) {
+            setNavState(true);
+        } else {
+            setNavState(false);
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", onNavScroll);
+    }, []);
 
     const handleLogOut = () => {
         logOut()
@@ -15,7 +28,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="navbar bg-base-200">
+        <div className={`fixed z-50 navbar bg-base-200 ${navState ? 'backdrop-blur-md bg-opacity-30 shadow-primary/20 duration-300' : 'backdrop-blur-md'}`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

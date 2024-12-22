@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useCarts from '../hooks/useCart';
+import useAxiosSecure from '../hooks/useAxios';
+import { AuthContext } from '../providers/AuthProvider';
+import { FaCartPlus } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
 const SingleBook = () => {
     const { author,
@@ -16,6 +21,32 @@ const SingleBook = () => {
         rating,
         title,
         _id } = useLoaderData()
+
+    const [cartsData, cartsLoading, cartsRefetch] = useCarts();
+    const [cartStatus, setCartStatus] = useState(false);
+    const [axiosSecure] = useAxiosSecure();
+    const { currentUser } = useContext(AuthContext);
+
+    useEffect(() => {
+        if (cartsData?.list) {
+            setCartStatus(cartsData?.list?.includes(_id));
+        }
+    }, [cartsData, _id]);
+
+    const onAddToCart = () => {
+        axiosSecure.post(`/cart/${currentUser?.email}`, { item: _id })
+            .then(res => {
+                if (res.status === 200) {
+                    toast.success("Added To Cart", {
+                        position: "top-center",
+                        autoClose: 3000,
+                        theme: "light",
+                    });
+                    cartsRefetch();
+                }
+            })
+            .catch(error => console.log(error));
+    };
 
     return (
         <div className='container mx-auto mt-10'>
@@ -38,9 +69,17 @@ const SingleBook = () => {
                         <span className="line-through mr-3 text-red-600">${(Number(price)) * 3}</span>
                         <span className="text-green-500 font-semibold">${price}</span>
                     </p>
-                    <div className="w-full btn bg-teal-500 mt-10">
-                        <button className="text-white">Add to cart</button>
-                    </div>
+                    {
+                        !cartStatus ?
+                            <div onClick={onAddToCart} className="w-full btn bg-teal-500 mt-10">
+                                <button className="text-white">Add to cart</button>
+                            </div> :
+                            <div className="w-full btn btn-disabled border flex items-center justify-center mt-10">
+                                <p>Added to cart</p>
+                                <FaCartPlus className="text-lg" />
+                            </div>
+                    }
+
                 </div>
             </div>
 
