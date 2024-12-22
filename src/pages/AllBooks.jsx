@@ -116,7 +116,7 @@ const AllBooks = () => {
 
                             {/* Filter by Genre */}
                             <div>
-                                <h2 className="mb-2">Filter by Genre</h2>
+                                <h2 className="mb-2 text-gray-900 text-lg">Filter by Genre</h2>
                                 {allGenres.map((genre, index) => (
                                     <div key={index} className="flex items-center gap-3">
                                         <input type="checkbox" value={genre} {...register("genre")} />
@@ -127,7 +127,7 @@ const AllBooks = () => {
 
                             {/* Filter by Publisher */}
                             <div>
-                                <h2 className="mb-2">Filter by Publisher</h2>
+                                <h2 className="mb-2 text-gray-900 text-lg">Filter by Publisher</h2>
                                 {allPublishers.map((publisher, index) => (
                                     <div key={index} className="flex items-center gap-3">
                                         <input
@@ -142,7 +142,7 @@ const AllBooks = () => {
 
                             {/* Filter by Author */}
                             <div>
-                                <h2 className="mb-2">Filter by Author</h2>
+                                <h2 className="mb-2 text-gray-900 text-lg">Filter by Author</h2>
                                 {allAuthors.map((author, index) => (
                                     <div key={index} className="flex items-center gap-3">
                                         <input type="checkbox" value={author} {...register("author")} />
@@ -153,7 +153,7 @@ const AllBooks = () => {
 
                             {/* Sort by Price */}
                             <div>
-                                <h2 className="mb-2">Sort by Price</h2>
+                                <h2 className="mb-2 text-gray-900 text-lg">Sort by Price</h2>
                                 <div>
                                     <input
                                         type="radio"
@@ -178,7 +178,7 @@ const AllBooks = () => {
                                 </div>
                             </div>
 
-                            <button className="btn btn-primary mt-5" type="submit">
+                            <button className="btn bg-gray-500 text-white mt-5" type="submit">
                                 Apply Filters
                             </button>
                         </div>
