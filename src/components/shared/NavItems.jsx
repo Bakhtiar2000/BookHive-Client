@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-import { Link } from 'react-router-dom';
+import ActiveLink from '../../utils/ActiveLink';
 
 const NavItems = () => {
     const { currentUser } = useContext(AuthContext)
@@ -11,36 +11,36 @@ const NavItems = () => {
             {
                 currentUser.role === "buyer" ?
                     <>
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/books">Books</Link></li>
-                        <li><Link to="/wishlist">My Wishlist</Link></li>
-                        <li><Link to="/cart">Cart</Link></li>
-                        <li><Link to="/about">About</Link></li>
-                        <li><Link to="/contact">Contact</Link></li>
+                        <li><ActiveLink to="/">Home</ActiveLink></li>
+                        <li><ActiveLink to="/books">Books</ActiveLink></li>
+                        <li><ActiveLink to="/wishlist">My Wishlist</ActiveLink></li>
+                        <li><ActiveLink to="/cart">Cart</ActiveLink></li>
+                        <li><ActiveLink to="/about">About</ActiveLink></li>
+                        <li><ActiveLink to="/contact">Contact</ActiveLink></li>
                     </> :
                     currentUser.role === "seller" ?
                         <>
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/books">Books</Link></li>
-                            <li><Link to="/about">Add a Book</Link></li>
-                            <li><Link to="/about">My Books</Link></li>
-                            <li><Link to="/about">About</Link></li>
-                            <li><Link to="/contact">Contact</Link></li>
+                            <li><ActiveLink to="/">Home</ActiveLink></li>
+                            <li><ActiveLink to="/books">Books</ActiveLink></li>
+                            <li><ActiveLink to="/about">Add a Book</ActiveLink></li>
+                            <li><ActiveLink to="/about">My Books</ActiveLink></li>
+                            <li><ActiveLink to="/about">About</ActiveLink></li>
+                            <li><ActiveLink to="/contact">Contact</ActiveLink></li>
                         </> :
                         currentUser.role === "admin" ?
                             <>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/books">Books</Link></li>
-                                <li><Link to="/books">All Users</Link></li>
-                                <li><Link to="/about">About</Link></li>
-                                <li><Link to="/contact">Contact</Link></li>
+                                <li><ActiveLink to="/">Home</ActiveLink></li>
+                                <li><ActiveLink to="/books">Books</ActiveLink></li>
+                                <li><ActiveLink to="/books">All Users</ActiveLink></li>
+                                <li><ActiveLink to="/about">About</ActiveLink></li>
+                                <li><ActiveLink to="/contact">Contact</ActiveLink></li>
                             </> :
 
                             <>
-                                <li><Link to="/">Home</Link></li>
-                                <li><Link to="/books">Books</Link></li>
-                                <li><Link to="/about">About</Link></li>
-                                <li><Link to="/contact">Contact</Link></li>
+                                <li><ActiveLink to="/">Home</ActiveLink></li>
+                                <li><ActiveLink to="/books">Books</ActiveLink></li>
+                                <li><ActiveLink to="/about">About</ActiveLink></li>
+                                <li><ActiveLink to="/contact">Contact</ActiveLink></li>
 
                             </>
 

@@ -83,7 +83,7 @@ const AllBooks = () => {
     if (booksLoading) return <p>Loading...</p>;
 
     return (
-        <div className="container mx-auto ">
+        <div className="container mx-auto">
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content">
@@ -91,7 +91,7 @@ const AllBooks = () => {
                     <label htmlFor="my-drawer-2" className="fixed z-20 top-16 btn bg-teal-50 text-teal-500 rounded-full drawer-button lg:hidden me-auto mt-3 ms-3">
                         <span className="menu-icon">☰</span>
                     </label>
-                    <div className="grid gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 duration-300 px-2 mx-auto">
+                    <div className="grid gap-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 duration-300 px-2 mb-10 mx-auto">
                         {filteredBooks.map((book) => (
                             <BookCard key={book._id} book={book} />
                         ))}

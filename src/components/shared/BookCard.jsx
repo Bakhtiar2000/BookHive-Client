@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import useWishlist from "../../hooks/useWishlist";
 import useCarts from "../../hooks/useCart";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -10,13 +10,13 @@ import { FaCartPlus } from "react-icons/fa";
 
 const BookCard = ({ book }) => {
     const { _id, title, author, genre, publishedYear, isbn, price, rating, availableCopies, coverImageUrl, description, language, pageCount, publisher } = book;
-    const { currentUser } = useContext(AuthContext);
+    const { user, currentUser } = useContext(AuthContext);
     const [axiosSecure] = useAxiosSecure();
     const [wishlistsData, wishlistsLoading, wishlistsRefetch] = useWishlist();
     const [cartsData, cartsLoading, cartsRefetch] = useCarts();
-
     const [wishlistStatus, setWishlistStatus] = useState(false);
     const [cartStatus, setCartStatus] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (wishlistsData?.list || cartsData?.list) {
@@ -26,6 +26,10 @@ const BookCard = ({ book }) => {
     }, [wishlistsData, cartsData, _id]);
 
     const onAddWishlist = () => {
+        if (!user) {
+            navigate("/login");
+            return;
+        }
         axiosSecure.post(`/wishlist/${currentUser?.email}`, { item: _id })
             .then(res => {
                 if (res.status === 200) {
@@ -41,6 +45,10 @@ const BookCard = ({ book }) => {
     };
 
     const onRemoveWishlist = () => {
+        if (!user) {
+            navigate("/login");
+            return;
+        }
         axiosSecure.patch(`/wishlist/${currentUser?.email}`, { item: _id })
             .then(res => {
                 if (res.status === 200) {
@@ -56,6 +64,10 @@ const BookCard = ({ book }) => {
     };
 
     const onAddToCart = () => {
+        if (!user) {
+            navigate("/login");
+            return;
+        }
         axiosSecure.post(`/cart/${currentUser?.email}`, { item: _id })
             .then(res => {
                 if (res.status === 200) {
@@ -72,11 +84,11 @@ const BookCard = ({ book }) => {
 
     return (
         <div className="relative card bg-base-100 shadow-lg">
-            {
+            {(!user || currentUser?.role === "buyer") && (
                 !wishlistStatus ?
                     <GoHeart onClick={onAddWishlist} className="absolute top-2 right-5 hover:right-3 cursor-pointer text-4xl text-teal-500 hover:text-5xl hover:text-green-600 duration-200" /> :
                     <GoHeartFill onClick={onRemoveWishlist} className="absolute top-2 right-5 hover:right-3 cursor-pointer text-4xl text-green-500 hover:text-5xl duration-200" />
-            }
+            )}
             <img className="w-1/2 h-1/2 mx-auto" src={coverImageUrl} alt={title} />
             <div className="card-body px-5 p-3">
                 <Link to={`/books/${_id}`} className="card-title text-teal-500 cursor-pointer hover:underline duration-300">{title}</Link>
@@ -86,16 +98,19 @@ const BookCard = ({ book }) => {
                     <span className="line-through mr-3 text-red-600">${(Number(price)) * 3}</span>
                     <span className="text-green-500 font-semibold">${price}</span>
                 </p>
-                {
-                    !cartStatus ?
+                {(!user || currentUser?.role === "buyer") && (
+                    !cartStatus ? (
                         <div onClick={onAddToCart} className="w-full btn bg-teal-500">
                             <button className="text-white">Add to cart</button>
-                        </div> :
+                        </div>
+                    ) : (
                         <div className="w-full btn btn-disabled border flex items-center justify-center gap-0">
                             <p>Added to cart</p>
                             <FaCartPlus className="text-lg" />
                         </div>
-                }
+                    )
+                )}
+
             </div>
         </div>
     );
