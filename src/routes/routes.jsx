@@ -10,6 +10,7 @@ import Contact from "../pages/Contact";
 import AllBooks from "../pages/AllBooks";
 import SingleBook from "../pages/SingleBook";
 import MyWishlist from "../pages/MyWishlist";
+import Checkout from "../pages/Checkout";
 
 
 const baseURL = "http://localhost:5000/"
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
             {
                 path: "/wishlist",
                 element: <MyWishlist />
+            },
+            {
+                path: "/checkout",
+                element: <Checkout />
             },
             {
                 path: "/books/:id",

@@ -14,6 +14,7 @@ const NavItems = () => {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/books">Books</Link></li>
                         <li><Link to="/wishlist">My Wishlist</Link></li>
+                        <li><Link to="/checkout">Checkout</Link></li>
                         <li><Link to="/about">About</Link></li>
                         <li><Link to="/contact">Contact</Link></li>
                     </> :

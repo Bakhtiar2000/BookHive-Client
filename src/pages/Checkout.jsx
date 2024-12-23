@@ -1,21 +1,16 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { FaMinus, FaPlus, FaShoppingCart } from 'react-icons/fa';
-import useCarts from "../../hooks/useCart";
-import useBooks from "../../hooks/useBooks";
-import { Link } from 'react-router-dom';
+import { FaMinus, FaPlus } from 'react-icons/fa';
+import useCarts from '../hooks/useCart';
+import useBooks from '../hooks/useBooks';
+import Title from "../components/shared/Title";
 
-const Cart = () => {
-    const [cartsData, cartsLoading, cartsRefetch] = useCarts();
-    const [booksData, booksLoading, booksRefetch] = useBooks();
+const Checkout = () => {
+    const [cartsData, cartsLoading] = useCarts();
+    const [booksData, booksLoading] = useBooks();
     const [lists, setLists] = useState(() => {
         const savedCart = localStorage.getItem("cart");
         return savedCart ? JSON.parse(savedCart) : [];
     });
-
-    // useEffect(() => {
-    //     if (!cartsData) cartsRefetch();
-    //     if (!booksData) booksRefetch();
-    // }, [cartsRefetch, booksRefetch]);
 
     useEffect(() => {
         if (cartsData?.list) {
@@ -28,28 +23,22 @@ const Cart = () => {
         return booksData?.filter(book => lists.includes(book._id)) || [];
     }, [booksData, lists]);
 
-    if (cartsLoading || booksLoading) return <p>Loading...</p>
+    // Total Calculation
+    const subtotal = useMemo(() => {
+        return selectedBooks.reduce((sum, book) => sum + book.price, 0);
+    }, [selectedBooks]);
+    const onlineFee = 60;
+    const total = (subtotal + onlineFee).toFixed(2);
 
+    if (cartsLoading || booksLoading) return <p>Loading...</p>;
 
     return (
-        <div className="dropdown dropdown-bottom dropdown-end">
+        <div className='container mx-auto'>
+            <Title name="Checkout" />
 
-            {/* Cart Icon */}
-            <div tabIndex={0} role="button" className="text-teal-500 text-lg md:text-2xl">
-                <div className="relative rounded-full border border-green-500 cursor-pointer p-3 hover:bg-green-500 group duration-200">
-                    <FaShoppingCart className="text-green-500 text-lg md:text-xl group-hover:text-white duration-200" />
-                    <p className=' bg-green-500 px-2  rounded-full absolute text-base text-white -top-2 -right-2'>
-                        {cartsData?.list?.length}
-                    </p>
-                </div>
-            </div>
-
-            {/* Dropdown */}
-            <div
-                tabIndex={0}
-                className="dropdown-content menu rounded-box z-[999] md:w-96 w-80 shadow bg-white">
-                {/* Scrollable Content */}
-                <div className="max-h-96 overflow-y-auto p-2">
+            <div className='grid grid-cols-3 gap-5'>
+                {/* Carts */}
+                <div className='col-span-2'>
                     {selectedBooks.map((book) => (
                         <div
                             key={book._id}
@@ -95,16 +84,27 @@ const Cart = () => {
                     ))}
                 </div>
 
-                {/* Checkout Button */}
-                <Link to="/checkout" className="bg-white p-2 shadow-top sticky bottom-0">
-                    <button className="btn bg-gray-500 text-white w-full">
-                        Proceed to Checkout
-                    </button>
-                </Link>
+                {/* Summary */}
+                <div className='col-span-1 rounded-lg border h-fit border-teal-500 p-5'>
+                    <h2 className='text-green-500 text-2xl font-semibold text-center border-b-2 border-green-500 pb-2 mb-5'>Summary</h2>
+                    <div>
+                        <div className='flex justify-between items-center border-b border-dashed mb-3'>
+                            <p>Subtotal:</p>
+                            <p>{subtotal} Tk</p>
+                        </div>
+                        <div className='flex justify-between items-center border-b border-dashed mb-3'>
+                            <p>Online fee:</p>
+                            <p>{onlineFee} Tk</p>
+                        </div>
+                        <div className='flex justify-between items-center font-semibold text-lg mb-3'>
+                            <p>Total:</p>
+                            <p>{total} Tk</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
     );
 };
 
-export default Cart;
+export default Checkout;
