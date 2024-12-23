@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import BookCard from "../components/shared/BookCard";
+import BookCard from "../components/cards/BookCard";
 import Title from "../components/shared/Title";
 import { useForm } from "react-hook-form";
 import useBooks from "../hooks/useBooks";

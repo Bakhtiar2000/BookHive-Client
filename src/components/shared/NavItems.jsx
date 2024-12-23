@@ -31,7 +31,7 @@ const NavItems = () => {
                             <>
                                 <li><ActiveLink to="/">Home</ActiveLink></li>
                                 <li><ActiveLink to="/books">Books</ActiveLink></li>
-                                <li><ActiveLink to="/books">All Users</ActiveLink></li>
+                                <li><ActiveLink to="/allUsers">All Users</ActiveLink></li>
                                 <li><ActiveLink to="/about">About</ActiveLink></li>
                                 <li><ActiveLink to="/contact">Contact</ActiveLink></li>
                             </> :

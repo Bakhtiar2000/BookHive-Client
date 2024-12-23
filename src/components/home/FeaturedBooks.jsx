@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BookCard from "../shared/BookCard";
+import BookCard from "../cards/BookCard";
 import Title from "../shared/Title";
 import { useEffect } from "react";
 import useBooks from "../../hooks/useBooks";

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import useBooks from "../hooks/useBooks";
 import useWishlists from "../hooks/useWishlist";
 import Title from "../components/shared/Title";
-import WishlistCard from "../components/shared/WishlistCard";
+import WishlistCard from "../components/cards/WishlistCard";
 
 const MyWishlist = () => {
     const [wishlistsData, wishlistsLoading, wishlistsRefetch] = useWishlists();

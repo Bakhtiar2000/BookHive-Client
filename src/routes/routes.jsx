@@ -14,6 +14,7 @@ import CartList from "../pages/CartList";
 import Checkout from "../pages/Checkout";
 import MyBooks from "../pages/MyBooks";
 import AddABook from "../pages/AddABook";
+import AllUsers from "../pages/AllUsers";
 
 
 const baseURL = "http://localhost:5000/"
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
             {
                 path: "/myBooks",
                 element: <MyBooks />
+            },
+            {
+                path: "/allUsers",
+                element: <AllUsers />
             },
             {
                 path: "/about",

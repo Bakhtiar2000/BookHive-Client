@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Title from "../shared/Title";
-import CategoryCard from "../shared/CategoryCard";
+import CategoryCard from "../cards/CategoryCard";
 import useAuthors from "../../hooks/useAuthors";
 import usePublishers from "../../hooks/usePublishers";
 
