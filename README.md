@@ -76,8 +76,8 @@
 
 ## User Credentials
 ### Buyer
-- **Email**: fahim@gmail.com
-- **Password**: Fahim111**
+- **Email**: user@gmail.com
+- **Password**: User111**
 
 ### Seller
 - **Email**: rakib@gmail.com

@@ -107,7 +107,7 @@ const Register = () => {
                 console.log(loggedUser)
                 const savedUser = { name: loggedUser?.displayName, email: loggedUser?.email, img: loggedUser?.photoURL, role: 'buyer' }
                 console.log(savedUser)
-                fetch('https://book-hive-server-55dh4ekky-bakhtiar2000s-projects.vercel.app/users', {
+                fetch('https://book-hive-server-bakhtiar2000s-projects.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
