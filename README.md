@@ -105,14 +105,4 @@ The application is deployed live at: [BookHive Live Link](https://your-live-app-
 - Express.js
 - MongoDB
 - Firebase Authentication
-- JWT for secure routes
 
----
-
-## Contribution
-Feel free to fork the repository and submit pull requests for new features or bug fixes!
-
----
-
-## License
-This project is licensed under the MIT License.
