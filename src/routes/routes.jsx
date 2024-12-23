@@ -12,6 +12,8 @@ import SingleBook from "../pages/SingleBook";
 import MyWishlist from "../pages/MyWishlist";
 import CartList from "../pages/CartList";
 import Checkout from "../pages/Checkout";
+import MyBooks from "../pages/MyBooks";
+import AddABook from "../pages/AddABook";
 
 
 const baseURL = "http://localhost:5000/"
@@ -30,6 +32,11 @@ export const router = createBrowserRouter([
                 element: <AllBooks />
             },
             {
+                path: "/books/:id",
+                element: <SingleBook></SingleBook>,
+                loader: ({ params }) => fetch(`${baseURL}books/${params.id}`)
+            },
+            {
                 path: "/wishlist",
                 element: <MyWishlist />
             },
@@ -42,9 +49,12 @@ export const router = createBrowserRouter([
                 element: <Checkout />
             },
             {
-                path: "/books/:id",
-                element: <SingleBook></SingleBook>,
-                loader: ({ params }) => fetch(`${baseURL}books/${params.id}`)
+                path: "/addABook",
+                element: <AddABook />
+            },
+            {
+                path: "/myBooks",
+                element: <MyBooks />
             },
             {
                 path: "/about",

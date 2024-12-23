@@ -15,7 +15,7 @@ const MainLayout = () => {
             <div>
                 <Navbar />
             </div>
-            <div className="min-h-screen pt-16">
+            <div className="min-h-screen pt-[76px]">
                 {
                     currentUser?.role === "buyer" &&
                     <Draggable>

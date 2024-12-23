@@ -71,7 +71,7 @@ const Navbar = () => {
                                         alt="Profile"
                                     />
                                 ) : (
-                                    <p className="w-8 md:w-10 h-8 md:h-10 text-center text-lg font-semibold hover:bg-gray-300 py-1 hover:text-white rounded-md uppercase border cursor-pointer duration-300 border-orange-500 hover:border-gray-300 text-orange-500">
+                                    <p className="w-8 md:w-10 h-8 md:h-10 text-center text-lg font-semibold hover:bg-gray-300 md:py-1 hover:text-white rounded-md uppercase border cursor-pointer duration-300 border-orange-500 hover:border-gray-300 text-orange-500">
                                         {currentUser?.name?.split(' ')
                                             .filter(word => word.length > 2)
                                             .slice(0, 2)

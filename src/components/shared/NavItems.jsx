@@ -22,8 +22,8 @@ const NavItems = () => {
                         <>
                             <li><ActiveLink to="/">Home</ActiveLink></li>
                             <li><ActiveLink to="/books">Books</ActiveLink></li>
-                            <li><ActiveLink to="/about">Add a Book</ActiveLink></li>
-                            <li><ActiveLink to="/about">My Books</ActiveLink></li>
+                            <li><ActiveLink to="/addABook">Add a Book</ActiveLink></li>
+                            <li><ActiveLink to="/myBooks">My Books</ActiveLink></li>
                             <li><ActiveLink to="/about">About</ActiveLink></li>
                             <li><ActiveLink to="/contact">Contact</ActiveLink></li>
                         </> :
