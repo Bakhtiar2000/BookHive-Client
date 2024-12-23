@@ -23,13 +23,13 @@
   - Contact form with fields for name, email, and message.
 
 ### Buyer Features
-- **Wishlist Management**: Add and remove products.
-- **Shopping Cart**: Add, update, and remove products.
+- **Wishlist Management**: Add and remove books.
+- **Shopping Cart**: Add, update, and remove books.
 
 ### Seller Features
 - **Dashboard**:
-  - Add new products.
-  - View, edit, or delete existing products.
+  - Add new books.
+  - View, edit, or delete existing books.
 
 ### Admin Features
 - **Dashboard**:
@@ -90,7 +90,7 @@
 ---
 
 ## Deployment
-The application is deployed live at: [BookHive Live Link](https://your-live-app-url.vercel.app)
+The application is deployed live at: [BookHive Live Link](https://silver-empanada-ead53a.netlify.app/)
 
 ---
 
@@ -99,10 +99,10 @@ The application is deployed live at: [BookHive Live Link](https://your-live-app-
 - React.js
 - TailwindCSS for styling
 - Axios for API calls
+- Firebase
 
 ### Backend
 - Node.js
 - Express.js
 - MongoDB
-- Firebase Authentication
 
